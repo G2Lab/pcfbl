@@ -1,0 +1,14 @@
+#! /usr/bin/bash
+#SBATCH --job-name=single
+#SBATCH --partition=pe2
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=aelhussein@nygenome.org
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=50G
+#SBATCH --time=80:00:00
+
+source ~/anaconda3/bin/activate ~/anaconda3/envs/pytorch_env/
+conda activate pytorch_env
+HOSPITALS=(264 142 148 281 154 283 157 420 165 167 176 449 199 458 79 338 227 248 122 252)
+parallel --jobs 20 "/gpfs/commons/groups/gursoy_lab/aelhussein/patient_pfl/20_sites/code/singlesite.py -id {}" ::: "${HOSPITALS[@]}"

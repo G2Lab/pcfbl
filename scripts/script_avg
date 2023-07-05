@@ -1,0 +1,14 @@
+#! /usr/bin/bash
+#SBATCH --job-name=avg
+#SBATCH --partition=pe2
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=aelhussein@nygenome.org
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=50G
+#SBATCH --time=80:00:00
+
+source ~/anaconda3/bin/activate ~/anaconda3/envs/pytorch_env/
+conda activate pytorch_env
+
+python /gpfs/commons/groups/gursoy_lab/aelhussein/patient_pfl/20_sites/code/server.py -mt avg
